@@ -5,6 +5,7 @@ import io.realm.annotations.PrimaryKey
 import io.realm.annotations.Required
 
 open class NoticeApp(
-    @PrimaryKey var packageName: String? = null,
+    @PrimaryKey var packageName: String?,
     @Required var appName: String = ""
-): RealmObject() {}
+): RealmObject() {
+}

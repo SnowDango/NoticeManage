@@ -9,5 +9,6 @@ open class NoticeChannel(
     @Required var packageName: String = "",
     var lastTitle: String = "",
     var lastText: String = "",
-    var lastSubText: String = ""
+    var lastSubText: String = "",
+    var blocked: Int = 0 // 0: blocked, 1: not blocked
 ):RealmObject() {}
