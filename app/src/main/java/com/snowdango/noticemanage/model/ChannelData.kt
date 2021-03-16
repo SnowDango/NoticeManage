@@ -6,5 +6,5 @@ data class ChannelData(
     val lastTitle: String,
     val lastText: String,
     val lastSubText: String,
-    val blocked: Boolean
+    var blocked: Boolean
 )

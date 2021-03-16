@@ -10,5 +10,5 @@ open class NoticeChannel(
     var lastTitle: String = "",
     var lastText: String = "",
     var lastSubText: String = "",
-    var blocked: Int = 0 // 0: blocked, 1: not blocked
+    var blocked: Int = 1 // 0: blocked, 1: not blocked
 ):RealmObject() {}

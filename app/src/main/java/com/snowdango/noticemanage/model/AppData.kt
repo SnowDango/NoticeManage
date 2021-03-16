@@ -7,6 +7,10 @@ import com.snowdango.noticemanage.R
 data class AppData(
     val packageName: String,
     val appName: String,
-    var aooIcon: Drawable? = NoticeManageApp().getDrawable(R.drawable.ic_launcher_foreground),
+    var appIcon: Drawable? = NoticeManageApp.singletonContext().getDrawable(R.drawable.ic_launcher_foreground),
     var visibleChannel: Boolean = false
-)
+){
+    fun toggleVisible(){
+        visibleChannel = visibleChannel.not()
+    }
+}
