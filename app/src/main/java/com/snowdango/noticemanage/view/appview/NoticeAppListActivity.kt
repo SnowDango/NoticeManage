@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.afollestad.materialdialogs.MaterialDialog
 import com.airbnb.epoxy.EpoxyRecyclerView
 import com.snowdango.noticemanage.R
 import com.snowdango.noticemanage.services.controller.notice.ListenNoticeService
@@ -31,8 +32,17 @@ class NoticeAppListActivity : AppCompatActivity(){
         setContentView(R.layout.activity_notice_appview)
         
         if(NotificationManagerCompat.getEnabledListenerPackages(this).contains(packageName).not()) {
-            val noticeListenSetting = Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS)
-            startActivity(noticeListenSetting)
+            MaterialDialog(this).apply {
+                title(text = "Permission Setting")
+                message(text = "Please permission setting to read notification")
+                positiveButton(text = "ok"){
+                    val noticeListenSetting = Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS)
+                    startActivity(noticeListenSetting)
+                }
+                negativeButton(text = "not"){
+                    this@NoticeAppListActivity.finish()
+                }
+            }
         }else {
             startService(Intent(applicationContext, ListenNoticeService::class.java))
         }
