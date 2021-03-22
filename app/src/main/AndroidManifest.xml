@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.snowdango.noticemanage">
 
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
+    <queries>
+        <package android:name="com.snowdango.noticemanage.view" />
+    </queries>
 
     <application
         android:allowBackup="true"
@@ -12,6 +19,7 @@
         android:supportsRtl="true"
         android:name=".NoticeManageApp"
         android:theme="@style/Theme.NoticeManage">
+
         <activity android:name="com.snowdango.noticemanage.view.appview.NoticeAppListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +28,8 @@
             </intent-filter>
         </activity>
 
-        <service android:name="com.snowdango.noticemanage.services.controller.notice.ListenNoticeService"
+        <service
+            android:name="com.snowdango.noticemanage.services.controller.notice.ListenNoticeService"
             android:label="@string/app_name"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
