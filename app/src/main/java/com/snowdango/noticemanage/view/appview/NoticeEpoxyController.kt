@@ -1,6 +1,5 @@
 package com.snowdango.noticemanage.view.appview
 
-import android.util.Log
 import android.view.View
 import com.airbnb.epoxy.Typed2EpoxyController
 import com.snowdango.noticemanage.bindingadapter.ToggleAdapter
@@ -11,7 +10,7 @@ import com.snowdango.noticemanage.model.ChannelData
 
 class NoticeEpoxyController(
         private val toggleListener: ToggleListener
-): Typed2EpoxyController<ArrayList<AppData>, ArrayList<ChannelData>>() {
+) : Typed2EpoxyController<ArrayList<AppData>, ArrayList<ChannelData>>() {
 
     override fun buildModels(apps: ArrayList<AppData>?, channels: ArrayList<ChannelData>?) {
         apps?.forEach { noticeApp ->
@@ -21,10 +20,10 @@ class NoticeEpoxyController(
                 noticeAppName(noticeApp.appName)
                 click(View.OnClickListener {
                     noticeApp.toggleVisible()
-                    setData(apps,channels)
+                    setData(apps, channels)
                 })
             }
-            if(noticeApp.visibleChannel){
+            if (noticeApp.visibleChannel) {
                 channels?.filter { noticeChannel -> noticeChannel.packageName == noticeApp.packageName }?.forEach { channelData ->
                     epoxyChannelItem {
                         id(channelData.channelId)
@@ -32,9 +31,9 @@ class NoticeEpoxyController(
                         title(channelData.lastTitle)
                         text(channelData.lastText)
                         block(channelData.blocked)
-                        switchChange(object :ToggleAdapter.SwitchToggle{
+                        switchChange(object : ToggleAdapter.SwitchToggle {
                             override fun toggleChange(isOn: Boolean) =
-                                toggleListener.switchToggle(channelData.channelId,isOn)
+                                    toggleListener.switchToggle(channelData.channelId, isOn)
                         })
                     }
                 }
@@ -42,7 +41,7 @@ class NoticeEpoxyController(
         }
     }
 
-    interface ToggleListener{
+    interface ToggleListener {
         fun switchToggle(channelId: String, isOn: Boolean)
     }
 }

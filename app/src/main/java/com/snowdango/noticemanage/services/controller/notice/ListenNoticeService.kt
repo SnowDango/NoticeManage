@@ -48,7 +48,7 @@ class ListenNoticeService: NotificationListenerService(){
     private fun cancelNotice(channelId: String,key: String,packageName: String, title: String,text: String,subText: String){
         if(model.isChannelExist(channelId)){
             model.updateLastData(channelId,title,text,subText)
-            if(model.isBlocked(channelId)) cancelNotification(key)
+            if(!model.isBlocked(channelId)) cancelNotification(key)
         }else{
             saveNotice(channelId, packageName, title, text, subText)
         }

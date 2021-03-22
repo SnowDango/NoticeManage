@@ -65,4 +65,6 @@ dependencies {
     implementation 'com.github.santalu:aspect-ratio-imageview:1.0.9'
 
     implementation 'com.github.angads25:toggle:1.1.0'
+
+    implementation 'com.afollestad.material-dialogs:core:3.3.0'
 }

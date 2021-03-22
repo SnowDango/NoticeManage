@@ -32,15 +32,17 @@ class RealmControlModel() {
     fun isChannelExist(channelId: String): Boolean{
         val realm = Realm.getDefaultInstance()
         val channels = realm.where(NoticeChannel::class.java).equalTo("channelId",channelId).findAll()
+        val isExist = !channels.isNullOrEmpty()
         realm.close()
-        return !channels.isNullOrEmpty()
+        return isExist
     }
 
     private fun isAppExist(packageName: String): Boolean{
         val realm = Realm.getDefaultInstance()
         val apps = realm.where(NoticeApp::class.java).equalTo("packageName",packageName).findAll()
+        val isExist = !apps.isNullOrEmpty()
         realm.close()
-        return !apps.isNullOrEmpty()
+        return isExist
     }
 
     fun insert(channelId: String,appName: String, packageName: String, title: String, text: String, subText: String){
@@ -115,8 +117,9 @@ class RealmControlModel() {
     fun isBlocked(channelId: String): Boolean{
         val realm = Realm.getDefaultInstance()
         val targetChannel = realm.where(NoticeChannel::class.java).equalTo("channelId",channelId).findFirst()
+        val isBlock = targetChannel?.blocked != 1
         realm.close()
-        return targetChannel?.blocked != 1
+        return isBlock
     }
 
     fun getApps(): ModelGetAppsResult {
